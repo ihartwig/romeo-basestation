@@ -15,7 +15,7 @@ Part of DCC++ BASE STATION for the Arduino
 // See SerialCommand::parse() below for defined text commands.
 
 #include "SerialCommand.h"
-#include "DCCpp_Uno.h"
+#include "DCCpp_RomeoV2.h"
 #include "Accessories.h"
 #include "Sensor.h"
 #include "Outputs.h"
@@ -458,7 +458,7 @@ void SerialCommand::parse(char *com){
     bitSet(TCCR1B,CS11);
     bitClear(TCCR1B,CS10);
 
-    #ifdef ARDUINO_AVR_UNO      // Configuration for UNO
+    #if defined ARDUINO_AVR_UNO || defined ARDUINO_AVR_LEONARDO // Configuration for UNO
 
       bitSet(TCCR0B,CS02);    // set Timer 0 prescale=256 - SLOWS NORMAL SPEED BY A FACTOR OF 4
       bitClear(TCCR0B,CS01);
@@ -567,5 +567,3 @@ void SerialCommand::parse(char *com){
 }; // SerialCommand::parse
 
 ///////////////////////////////////////////////////////////////////////////////
-
-

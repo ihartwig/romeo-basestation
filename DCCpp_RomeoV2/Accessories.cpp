@@ -61,7 +61,7 @@ the directions of any Turnouts being monitored or controlled by a separate inter
 
 #include "Accessories.h"
 #include "SerialCommand.h"
-#include "DCCpp_Uno.h"
+#include "DCCpp_RomeoV2.h"
 #include "EEStore.h"
 #include <EEPROM.h>
 #include "Comm.h"
@@ -235,5 +235,3 @@ Turnout *Turnout::create(int id, int add, int subAdd, int v){
 ///////////////////////////////////////////////////////////////////////////////
 
 Turnout *Turnout::firstTurnout=NULL;
-
-

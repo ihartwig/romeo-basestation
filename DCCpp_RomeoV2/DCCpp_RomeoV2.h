@@ -9,8 +9,8 @@ Part of DCC++ BASE STATION for the Arduino
 
 #include "Config.h"
 
-#ifndef DCCpp_Uno_h
-#define DCCpp_Uno_h
+#ifndef DCCpp_RomeoV2_h
+#define DCCpp_RomeoV2_h
 
 /////////////////////////////////////////////////////////////////////////////////////
 // RELEASE VERSION
@@ -31,7 +31,7 @@ Part of DCC++ BASE STATION for the Arduino
   #define ARDUINO_TYPE    "UNO"
 
   #define DCC_SIGNAL_PIN_MAIN 10          // Ardunio Uno  - uses OC1B
-  #define DCC_SIGNAL_PIN_PROG 5           // Arduino Uno  - uses OC0B
+  #define DCC_SIGNAL_PIN_PROG 5           // Arduino Uno  - uses OC0B 
 
   #if COMM_INTERFACE != 0                 // Serial was not selected
 
@@ -45,6 +45,17 @@ Part of DCC++ BASE STATION for the Arduino
 
   #define DCC_SIGNAL_PIN_MAIN 12          // Arduino Mega - uses OC1B
   #define DCC_SIGNAL_PIN_PROG 2           // Arduino Mega - uses OC3B
+
+#elif defined  ARDUINO_AVR_LEONARDO
+
+  #define ARDUINO_TYPE    "LEONARDO"
+
+  #define DCC_SIGNAL_PIN_MAIN 10          // Ardunio Leonardo - uses OC1B - wire to D4 on Romeo V2
+  #define DCC_SIGNAL_PIN_PROG 3           // Arduino Leonardo - uses OC0B - wire to D7 on Romeo V2
+
+  #if MOTOR_SHIELD_TYPE == 0
+    #error CANNOT COMPILE - LEONARDO PINS CONFLICT WITH ARDUINO MOTOR SHIELD PINS
+  #endif
 
 #else
 
@@ -81,6 +92,19 @@ Part of DCC++ BASE STATION for the Arduino
 
   #define DIRECTION_MOTOR_CHANNEL_PIN_A 7
   #define DIRECTION_MOTOR_CHANNEL_PIN_B 8
+
+#elif MOTOR_SHIELD_TYPE == 2
+
+  #define MOTOR_SHIELD_NAME "DFROBOT ROMEO V2 CONTROLLER"
+
+  #define SIGNAL_ENABLE_PIN_MAIN 5
+  #define SIGNAL_ENABLE_PIN_PROG 6
+
+  #define CURRENT_MONITOR_PIN_MAIN A3
+  #define CURRENT_MONITOR_PIN_PROG A1
+
+  #define DIRECTION_MOTOR_CHANNEL_PIN_A 4
+  #define DIRECTION_MOTOR_CHANNEL_PIN_B 7
 
 #else
 
@@ -131,5 +155,3 @@ Part of DCC++ BASE STATION for the Arduino
 /////////////////////////////////////////////////////////////////////////////////////
 
 #endif
-
-
